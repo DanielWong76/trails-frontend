@@ -1,13 +1,21 @@
-# trails-frontend
-Frontend repository for trails, using react native
+# Expo Router Example
 
-When you clone the repository, run
-- npm install
+Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
 
-To run your project with a simulator connected, run one of the following npm commands.
-- npm run android
-- npm run ios # you need to use macOS to build the iOS project - use the Expo app if you need to do iOS development without a Mac
-- npm run web
+## 🚀 How to use
 
-To run without phone connected, Download Expo Go app on your phone and scan the QR code (with camera) produced by the command
-- npx expo start
+```sh
+npx create-expo-app -e with-router
+```
+
+## 📝 Notes
+
+- [Expo Router: Docs](https://expo.github.io/router)
+- [Expo Router: Repo](https://github.com/expo/router)
+
+Run npm install when cloning
+Run npm start to start the application
+
+If you cannot connect to server on your phone:
+- npm install -g expo-cli
+- run expo-cli start --tunnel to run application
