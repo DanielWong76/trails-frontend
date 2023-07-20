@@ -2,9 +2,27 @@
   "expo": {
     "scheme": "acme",
     "web": {
-      "bundler": "metro"
+      "bundler": "metro",
+      "favicon": "./app/assets/images/icon.png"
     },
     "name": "trails-frontend",
-    "slug": "trails-frontend"
+    "slug": "trails-frontend",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/images/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./app/assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      }
+    }
   }
 }
