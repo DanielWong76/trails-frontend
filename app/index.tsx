@@ -20,13 +20,14 @@ const LandingPage: React.FC<Props> = (props: Props) => {
         await useFonts();
     };
 
+    EStyleSheet.build({});
+
     useEffect(() => {
         LoadFonts().catch(console.error);
     }, [])
 
-    EStyleSheet.build({ // always call EStyleSheet.build() even if you don't use global variables!
 
-    })
+
 
     return (
         <View style={[styles.background]}>
