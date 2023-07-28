@@ -31,7 +31,7 @@ const Auth = EStyleSheet.create({
     fontFamily: 'MochiyPopOne',
   },
   AuthTextInput: {
-    color: Colors.primaryDark + '73',
+    color: Colors.primaryDark,
     borderColor: Colors.primaryDark,
     borderWidth: 1,
     paddingVertical: '0.5rem',
