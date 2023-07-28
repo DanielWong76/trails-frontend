@@ -32,7 +32,6 @@ const Auth = EStyleSheet.create({
   },
   AuthTextInput: {
     color: Colors.primaryDark + '73',
-
     borderColor: Colors.primaryDark,
     borderWidth: 1,
     paddingVertical: '0.5rem',
