@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image } from "react-native";
 import { CSS } from '../constants/styles';
+import { Colors } from '../constants/styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
 type Props = {
   styles?
@@ -29,6 +30,7 @@ const styles = EStyleSheet.create({
   title: {
     fontSize: 48,
     fontFamily: 'MochiyPopOne',
+    color: Colors.secondary
   },
   image: {
     width: '6.25rem',
