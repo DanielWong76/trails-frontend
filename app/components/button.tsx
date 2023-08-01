@@ -5,20 +5,21 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 type Props = {
   styles?,
   label,
-  url,
+  url?,
   color?,
-  background?
+  background?,
+  onPress?,
 
 }
 
 const Button: React.FC<Props> = (props: Props) => {
-  const { label, url, background, color } = props;
+  const { label, url, background, color, onPress } = props;
 
   EStyleSheet.build()
 
   return (
     <View style={[styles.container, { backgroundColor: background, borderColor: color }]} >
-      <Link href={url} style={[styles.text, { color: color }]}>{label}</Link>
+      <Link href={url} style={[styles.text, { color: color }]} onPress={onPress}>{label}</Link>
     </View>
   )
 }

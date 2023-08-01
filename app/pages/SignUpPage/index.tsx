@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
 import TrailsLogo from '../../components/trailsLogo';
 import { CSS } from '../../constants/styles';
@@ -8,6 +8,8 @@ import Button from '../../components/button';
 import Pages from '../../constants/pages';
 import { Colors } from '../../constants/styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { UserSignUp } from '../../service/api/user';
+import User from '../../models/user';
 
 type Props = {
   styles?
@@ -22,6 +24,20 @@ const SignUpPage: React.FC<Props> = (props: Props) => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   EStyleSheet.build()
+
+  const signUp = (async () => {
+    console.log(firstName);
+    try {
+      const data = new User({
+        firstName: firstName, lastName: lastName, username: username, email: email, passwordDigest: password,
+      });
+      console.log('Making API call');
+      const { user } = await UserSignUp(data);
+      console.log(user);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
   return (
     <View style={styles.background}>
@@ -41,8 +57,8 @@ const SignUpPage: React.FC<Props> = (props: Props) => {
 
 
 
+        <Button label={'Sign Up'} url={Pages.landing} background={Colors.primaryDark} color={Colors.white} onPress={signUp} />
 
-        <Button label={'Sign Up'} url={Pages.home} background={Colors.primaryDark} color={Colors.white} />
         <Button label={'Back'} url={Pages.landing} color={Colors.primaryDark} background={Colors.white} />
 
         <Text style={styles.text}>Already have an Account? <Link style={styles.link} href={Pages.login}>Login</Link></Text>
