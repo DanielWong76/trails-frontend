@@ -52,6 +52,8 @@ const Auth = EStyleSheet.create({
   }
 })
 
+EStyleSheet.build({});
+
 export const CSS = {
   AuthCSS: Auth,
 

@@ -4,9 +4,10 @@ import Button from './components/button';
 import { CSS, Colors } from './constants/styles';
 import Pages from './constants/pages';
 import { loadAsync } from 'expo-font';
-import useFonts from './hooks/useFonts';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 type Props = {
     styles?
@@ -16,16 +17,21 @@ type Props = {
 
 const LandingPage: React.FC<Props> = (props: Props) => {
     const [IsReady, SetIsReady] = useState(false);
-    const LoadFonts = async () => {
-        await useFonts();
-    };
+    const [fontsLoaded] = useFonts({
+        'MochiyPopOne': require('./assets/fonts/MochiyPopOne-Regular.ttf'),
+      });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+          await SplashScreen.hideAsync();
+        }
+      }, [fontsLoaded]);
+    
+      if (!fontsLoaded) {
+        return null;
+      }
 
     EStyleSheet.build({});
-
-    useEffect(() => {
-        LoadFonts().catch(console.error);
-    }, [])
-
 
 
 
