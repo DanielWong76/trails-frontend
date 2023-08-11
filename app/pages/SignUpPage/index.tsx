@@ -10,6 +10,7 @@ import { Colors } from '../../constants/styles';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { UserSignUp } from '../../service/api/user';
 import User from '../../models/user';
+import { Buffer } from "buffer";
 
 type Props = {
   styles?
@@ -28,8 +29,14 @@ const SignUpPage: React.FC<Props> = (props: Props) => {
   const signUp = (async () => {
     console.log(firstName);
     try {
+      let buff = new Buffer(password);
+      let encoded_pw = buff.toString("base64");
       const data = new User({
-        firstName: firstName, lastName: lastName, username: username, email: email, passwordDigest: password,
+        firstName: firstName, 
+        lastName: lastName, 
+        username: username, 
+        email: email, 
+        passwordDigest: encoded_pw
       });
       console.log('Making API call');
       const { user } = await UserSignUp(data);

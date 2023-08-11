@@ -6,6 +6,9 @@ import { CSS, Colors } from '../../constants/styles';
 import Button from '../../components/button';
 import Pages from '../../constants/pages';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { UserLogin } from '../../service/api/user';
+import { Buffer } from "buffer";
+
 type Props = {
     styles?
 }
@@ -15,6 +18,25 @@ const LoginPage: React.FC<Props> = (props: Props) => {
     const [password, setPassword] = useState('');
 
     EStyleSheet.build()
+
+    const login = (async () => {
+        console.log(username);
+        try {
+            if (username == '') {
+                throw new Error("No username inputted");
+            }
+            if (password == '') {
+                throw new Error("No password inputted");
+            }
+            let buff = new Buffer(password);
+            let encoded_pw = buff.toString("base64");
+            const { user } = await UserLogin(username, encoded_pw);
+            console.log(user);
+        } catch(error) {
+            console.log(error);
+        }
+        
+    }) 
 
     return (
         <View style={styles.background}>
@@ -29,7 +51,7 @@ const LoginPage: React.FC<Props> = (props: Props) => {
 
 
 
-                <Button label={'Login'} url={Pages.home} background={Colors.primaryDark} color={Colors.white} />
+                <Button label={'Login'} url={Pages.home} background={Colors.primaryDark} color={Colors.white} onPress={login}/>
                 <Button label={'Back'} url={Pages.landing} color={Colors.primaryDark} background={Colors.white} />
 
                 <Text style={styles.text}>New User? <Link style={styles.link} href={Pages.signUp}>Sign Up</Link></Text>
