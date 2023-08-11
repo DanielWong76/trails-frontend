@@ -28,9 +28,7 @@ const LoginPage: React.FC<Props> = (props: Props) => {
             if (password == '') {
                 throw new Error("No password inputted");
             }
-            let buff = new Buffer(password);
-            let encoded_pw = buff.toString("base64");
-            const { user } = await UserLogin(username, encoded_pw);
+            const { user } = await UserLogin(username, password);
             console.log(user);
         } catch(error) {
             console.log(error);
