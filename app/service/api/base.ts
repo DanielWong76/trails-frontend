@@ -6,7 +6,7 @@ export enum HttpMethod {
   DELETE = 'DELETE',
 }
 
-const API_URL = process.env.PRODUCTION_URL || 'http://192.168.1.60:3000/api';
+const API_URL = process.env.PRODUCTION_URL || 'http://10.48.17.149:3000/api';
 
 export class ApiError extends Error {
   constructor(message, code) {

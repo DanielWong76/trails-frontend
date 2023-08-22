@@ -29,10 +29,10 @@ const SignUpPage: React.FC<Props> = (props: Props) => {
     console.log(firstName);
     try {
       const data = new User({
-        firstName: firstName, 
-        lastName: lastName, 
-        username: username, 
-        email: email, 
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        email: email,
         passwordDigest: password
       });
       console.log('Making API call');
