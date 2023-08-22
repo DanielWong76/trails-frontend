@@ -38,7 +38,6 @@ export async function makeApiRequest(
   const url = `${API_URL}${route}`
 
   console.log(`Calling to ${url} with ${data}`)
-  console.log('testing: ', data.username)
   try {
     const response: any = await makeRequest(
       url,
@@ -50,8 +49,6 @@ export async function makeApiRequest(
         // Authorization: `Bearer ${accessToken}`,
       }
     )
-
-    console.log('data sent: ', JSON.stringify(data))
     const result = await response.json()
     console.log('result', result)
 
