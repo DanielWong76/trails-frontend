@@ -8,6 +8,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import store from './redux/reducers/index';
+import { Provider } from 'react-redux';
 
 type Props = {
     styles?
@@ -36,18 +38,20 @@ const LandingPage: React.FC<Props> = (props: Props) => {
 
 
     return (
-        <View style={[styles.background]}>
+        <Provider store={store}>
+            <View style={[styles.background]}>
 
-            <Image style={styles.logo} source={require('./assets/images/logo.png')} />
+                <Image style={styles.logo} source={require('./assets/images/logo.png')} />
 
-            <View style={styles.container}>
-                <Text style={styles.title}>Welcome to <Text style={styles.trails}>Trails</Text></Text>
-                <Text style={styles.subTitle}>A place where your mom is being explored</Text>
+                <View style={styles.container}>
+                    <Text style={styles.title}>Welcome to <Text style={styles.trails}>Trails</Text></Text>
+                    <Text style={styles.subTitle}>A place where your mom is being explored</Text>
 
-                <Button url={Pages.login} label={'Login'} color={Colors.white} background={Colors.primaryDark} />
-                <Button url={Pages.signUp} label={'Sign Up'} color={Colors.primaryDark} background={Colors.white} />
+                    <Button url={Pages.login} label={'Login'} color={Colors.white} background={Colors.primaryDark} />
+                    <Button url={Pages.signUp} label={'Sign Up'} color={Colors.primaryDark} background={Colors.white} />
+                </View>
             </View>
-        </View>
+        </Provider>
     )
 }
 
