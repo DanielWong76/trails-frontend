@@ -37,18 +37,18 @@ const LandingPage: React.FC<Props> = (props: Props) => {
 
 
     return (
-            <View style={[styles.background]}>
+        <View style={[styles.background]}>
 
-                <Image style={styles.logo} source={require('./assets/images/logo.png')} />
+            <Image style={styles.logo} source={require('./assets/images/logo.png')} />
 
-                <View style={styles.container}>
-                    <Text style={styles.title}>Welcome to <Text style={styles.trails}>Trails</Text></Text>
-                    <Text style={styles.subTitle}>A place where your mom is being explored</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>Welcome to <Text style={styles.trails}>Trails</Text></Text>
+                <Text style={styles.subTitle}>A place where your mom is being explored</Text>
 
-                    <Button url={Pages.login} label={'Login'} color={Colors.white} background={Colors.primaryDark} />
-                    <Button url={Pages.signUp} label={'Sign Up'} color={Colors.primaryDark} background={Colors.white} />
-                </View>
+                <Button url={Pages.login} label={'Login'} color={Colors.white} background={Colors.primaryDark} />
+                <Button url={Pages.signUp} label={'Sign Up'} color={Colors.primaryDark} background={Colors.white} />
             </View>
+        </View>
     )
 }
 
