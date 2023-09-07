@@ -26,7 +26,10 @@ const SignUpPage: React.FC<Props> = (props: Props) => {
   EStyleSheet.build()
 
   const signUp = (async () => {
-    console.log(firstName);
+    console.log(firstName)
+    if (confirmPassword != password) {
+      throw new Error("Passwords do not match");
+    }
     try {
       const data = new User({
         firstName: firstName,
