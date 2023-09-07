@@ -64,7 +64,7 @@ const SignUpPage: React.FC<Props> = (props: Props) => {
 
 
 
-        <Button label={'Sign Up'} url={Pages.landing} background={Colors.primaryDark} color={Colors.white} onPress={signUp} />
+        <Button label={'Sign Up'} url={'./OnboardingPage'} background={Colors.primaryDark} color={Colors.white} onPress={signUp} />
 
         <Button label={'Back'} url={Pages.landing} color={Colors.primaryDark} background={Colors.white} />
 
