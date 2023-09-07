@@ -8,6 +8,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import SvgIcon from './constants/icons';
 
 type Props = {
     styles?
@@ -19,17 +20,17 @@ const LandingPage: React.FC<Props> = (props: Props) => {
     const [IsReady, SetIsReady] = useState(false);
     const [fontsLoaded] = useFonts({
         'MochiyPopOne': require('./assets/fonts/MochiyPopOne-Regular.ttf'),
-      });
+    });
 
     const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded) {
-          await SplashScreen.hideAsync();
+            await SplashScreen.hideAsync();
         }
-      }, [fontsLoaded]);
-    
-      if (!fontsLoaded) {
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
         return null;
-      }
+    }
 
     EStyleSheet.build({});
 
