@@ -8,8 +8,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import store from './redux/reducers/index';
-import { Provider } from 'react-redux';
+import SvgIcon from './constants/icons';
 
 type Props = {
     styles?
@@ -21,24 +20,23 @@ const LandingPage: React.FC<Props> = (props: Props) => {
     const [IsReady, SetIsReady] = useState(false);
     const [fontsLoaded] = useFonts({
         'MochiyPopOne': require('./assets/fonts/MochiyPopOne-Regular.ttf'),
-      });
+    });
 
     const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded) {
-          await SplashScreen.hideAsync();
+            await SplashScreen.hideAsync();
         }
-      }, [fontsLoaded]);
-    
-      if (!fontsLoaded) {
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
         return null;
-      }
+    }
 
     EStyleSheet.build({});
 
 
 
     return (
-        <Provider store={store}>
             <View style={[styles.background]}>
 
                 <Image style={styles.logo} source={require('./assets/images/logo.png')} />
@@ -51,7 +49,6 @@ const LandingPage: React.FC<Props> = (props: Props) => {
                     <Button url={Pages.signUp} label={'Sign Up'} color={Colors.primaryDark} background={Colors.white} />
                 </View>
             </View>
-        </Provider>
     )
 }
 
