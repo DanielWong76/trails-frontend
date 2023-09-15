@@ -21,9 +21,9 @@ const ImagePage: React.FC<Props> = (props: Props) => {
                 <Text style={styles.title}>
                     Upload Image
                 </Text>
-                <Image source={require('../../assets/images/defaultpfp.png')} style={styles.logo}/>
-                <View>
-                    <Image source={require('../../assets/images/upload.png')} style={styles.logo}/>
+                <Image source={require('../../assets/images/defaultpfp.png')} style={styles.uploadLogo}/>
+                <View style={styles.uploadContainer}>
+                    <Image source={require('../../assets/images/upload.png')} style={styles.uploadLogo}/>
                 </View>
                 <Button label={'Continue'} url={Pages.landing} background={Colors.primaryDark} color={Colors.white}/>
                 <Button label={'Continue without Image'} url={Pages.landing} background={Colors.white} color={Colors.primaryDark}/>
@@ -33,16 +33,21 @@ const ImagePage: React.FC<Props> = (props: Props) => {
     )
 }
 
-const backg = CSS.AuthCSS.landingPageBackground;
-backg.backgroundColor = 'transparent';
-
-const cont = CSS.AuthCSS.landingPageContainer;
-cont.marginTop = -50;
-
 const styles = EStyleSheet.create({
-    background: backg,
-    container: cont,
-    title: CSS.AuthCSS.AuthTitle,
+    background: {...CSS.AuthCSS.landingPageBackground,
+                    backgroundColor: 'transparent'
+                },
+    container: {...CSS.AuthCSS.landingPageContainer,
+                    position: 'absolute',
+                    top: 218,
+                    zIndex: 1
+                },
+    trailsLogo: { position: 'absolute',
+            top: 108,
+            zIndex:1},
+    title: {...CSS.AuthCSS.AuthTitle,
+                paddingBottom: '1.5rem'
+    },
     textInput: CSS.AuthCSS.AuthTextInput,
     text: CSS.AuthCSS.AuthText,
     link: CSS.AuthCSS.AuthLink,
@@ -50,13 +55,23 @@ const styles = EStyleSheet.create({
         width: 612,
         height: 523
     },
-    logo: {
+    uploadLogo: {
         alignSelf: 'center',
     },
     name: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between'
+    },
+    uploadContainer: {
+        width: 320,
+        height: 200,
+        borderColor: "black",
+        borderStyle: "solid",
+        borderWidth: 3,
+        justifyContent: 'center',
+        marginBottom: '1.5rem',
+        marginTop: '1.5rem'
     }
   })
   export default ImagePage;
