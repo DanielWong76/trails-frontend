@@ -41,15 +41,12 @@ const SignUpPage: React.FC<Props> = (props: Props) => {
       console.log('Making API call');
       const { user } = await UserSignUp(data);
       console.log(user);
-      dispatch(updateUserSession(data, user.sessionToken, user.updateSessionToken, new Date(user.sessionExpiration)));
-      console.log(auth.sessionToken);
     } catch (error) {
       console.log(error);
     }
   });
 
   return (
-    <Provider store={store}>
       <View style={styles.background}>
         <TrailsLogo />
         <View style={styles.container}>
@@ -75,7 +72,6 @@ const SignUpPage: React.FC<Props> = (props: Props) => {
 
         </View>
       </View>
-    </Provider>
   )
 }
 
