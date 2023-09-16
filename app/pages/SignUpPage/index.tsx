@@ -41,37 +41,41 @@ const SignUpPage: React.FC<Props> = (props: Props) => {
       console.log('Making API call');
       const { user } = await UserSignUp(data);
       console.log(user);
+      dispatch(updateUserSession(data, user.sessionToken, user.updateSessionToken, new Date(user.sessionExpiration)));
+      console.log(auth.sessionToken);
     } catch (error) {
       console.log(error);
     }
   });
 
   return (
-    <View style={styles.background}>
-      <TrailsLogo />
-      <View style={styles.container}>
-        <Text style={styles.title}>
-          Sign Up
-        </Text>
-        <View style={styles.name}>
-          <TextInput style={[styles.textInput, { width: '45%' }]} placeholder='First Name' onChangeText={setFirstName} value={firstName} placeholderTextColor={Colors.primaryDark + '73'} />
-          <TextInput style={[styles.textInput, { width: '45%' }]} placeholder='Last Name' onChangeText={setLastName} value={lastName} placeholderTextColor={Colors.primaryDark + '73'} />
-        </View>
-        <TextInput style={styles.textInput} placeholder='Username' onChangeText={setUsername} value={username} placeholderTextColor={Colors.primaryDark + '73'} />
-        <TextInput style={styles.textInput} placeholder='Email' onChangeText={setEmail} value={email} placeholderTextColor={Colors.primaryDark + '73'} />
-        <TextInput style={styles.textInput} placeholder='Password' onChangeText={setPassword} value={password} placeholderTextColor={Colors.primaryDark + '73'} />
-        <TextInput style={styles.textInput} placeholder='Confirm Password' onChangeText={setConfirmPassword} value={confirmPassword} placeholderTextColor={Colors.primaryDark + '73'} />
+    <Provider store={store}>
+      <View style={styles.background}>
+        <TrailsLogo />
+        <View style={styles.container}>
+          <Text style={styles.title}>
+            Sign Up
+          </Text>
+          <View style={styles.name}>
+            <TextInput style={[styles.textInput, { width: '45%' }]} placeholder='First Name' onChangeText={setFirstName} value={firstName} placeholderTextColor={Colors.primaryDark + '73'} />
+            <TextInput style={[styles.textInput, { width: '45%' }]} placeholder='Last Name' onChangeText={setLastName} value={lastName} placeholderTextColor={Colors.primaryDark + '73'} />
+          </View>
+          <TextInput style={styles.textInput} placeholder='Username' onChangeText={setUsername} value={username} placeholderTextColor={Colors.primaryDark + '73'} />
+          <TextInput style={styles.textInput} placeholder='Email' onChangeText={setEmail} value={email} placeholderTextColor={Colors.primaryDark + '73'} />
+          <TextInput style={styles.textInput} placeholder='Password' onChangeText={setPassword} value={password} placeholderTextColor={Colors.primaryDark + '73'} />
+          <TextInput style={styles.textInput} placeholder='Confirm Password' onChangeText={setConfirmPassword} value={confirmPassword} placeholderTextColor={Colors.primaryDark + '73'} />
 
 
 
         <Button label={'Sign Up'} url={'./OnboardingPage'} background={Colors.primaryDark} color={Colors.white} onPress={signUp} />
 
-        <Button label={'Back'} url={Pages.landing} color={Colors.primaryDark} background={Colors.white} />
+          <Button label={'Back'} url={Pages.landing} color={Colors.primaryDark} background={Colors.white} />
 
-        <Text style={styles.text}>Already have an Account? <Link style={styles.link} href={Pages.login}>Login</Link></Text>
+          <Text style={styles.text}>Already have an Account? <Link style={styles.link} href={Pages.login}>Login</Link></Text>
 
+        </View>
       </View>
-    </View>
+    </Provider>
   )
 }
 
