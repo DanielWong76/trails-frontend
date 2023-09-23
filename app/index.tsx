@@ -3,13 +3,13 @@ import { View, Text, Image } from 'react-native';
 import Button from './components/button';
 import { CSS, Colors } from './constants/styles';
 import Pages from './constants/pages';
-import { loadAsync } from 'expo-font';
 import React, { useState, useEffect, useCallback } from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import SvgIcon from './constants/icons';
-
+import { setSessionTokenAction } from './redux/actions/users';
+import { useDispatch } from 'react-redux';
 type Props = {
     styles?
 }
@@ -17,7 +17,6 @@ type Props = {
 
 
 const LandingPage: React.FC<Props> = (props: Props) => {
-    const [IsReady, SetIsReady] = useState(false);
     const [fontsLoaded] = useFonts({
         'MochiyPopOne': require('./assets/fonts/MochiyPopOne-Regular.ttf'),
     });

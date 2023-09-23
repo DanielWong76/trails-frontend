@@ -10,64 +10,68 @@ import * as ImagePicker from 'expo-image-picker';
 
 type Props = {
     styles?
-  }
+}
 
 
 
 const ImagePage: React.FC<Props> = (props: Props) => {
     const [photo, setPhoto] = React.useState(null);
-
     const handleChoosePhoto = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
             aspect: [4, 3],
             quality: 1,
-          });
-          console.log(result);
+        });
+        console.log(result);
 
         if (!result.canceled) {
             setPhoto(result.assets[0].uri);
         }
-      };
+    };
 
-    return(
+    return (
         <View style={styles.background}>
             <ImageBackground source={require('../../assets/images/ai-photo.png')} style={styles.image}>
-                <TrailsLogo/>
+                <TrailsLogo />
             </ImageBackground>
             <View style={styles.container}>
                 <Text style={styles.title}>
                     Upload Image
                 </Text>
-                <Image source={photo ? { uri: photo} : require('../../assets/images/defaultpfp.png')} style={styles.profilePhoto}/>
+                <Image source={photo ? { uri: photo } : require('../../assets/images/defaultpfp.png')} style={styles.profilePhoto} />
                 <TouchableOpacity onPress={handleChoosePhoto}>
                     <View style={styles.uploadContainer}>
-                        <Image source={require('../../assets/images/upload.png')} style={styles.uploadLogo}/>
+                        <Image source={require('../../assets/images/upload.png')} style={styles.uploadLogo} />
                     </View>
                 </TouchableOpacity>
-                <Button label={'Continue'} url={Pages.landing} background={Colors.primaryDark} color={Colors.white}/>
-                <Button label={'Continue without Image'} url={Pages.landing} background={Colors.white} color={Colors.primaryDark}/>
-          </View>
+                <Button label={'Continue'} url={Pages.landing} background={Colors.primaryDark} color={Colors.white} />
+                <Button label={'Continue without Image'} url={Pages.landing} background={Colors.white} color={Colors.primaryDark} />
+            </View>
 
         </View>
     )
 }
 
 const styles = EStyleSheet.create({
-    background: {...CSS.AuthCSS.landingPageBackground,
-                    backgroundColor: 'transparent'
-                },
-    container: {...CSS.AuthCSS.landingPageContainer,
-                    position: 'absolute',
-                    top: 218,
-                    zIndex: 1
-                },
-    trailsLogo: { position: 'absolute',
-            top: 108,
-            zIndex:1},
-    title: {...CSS.AuthCSS.AuthTitle,
-                paddingBottom: '1.5rem'
+    background: {
+        ...CSS.AuthCSS.landingPageBackground,
+        backgroundColor: 'transparent'
+    },
+    container: {
+        ...CSS.AuthCSS.landingPageContainer,
+        position: 'absolute',
+        top: 218,
+        zIndex: 1
+    },
+    trailsLogo: {
+        position: 'absolute',
+        top: 108,
+        zIndex: 1
+    },
+    title: {
+        ...CSS.AuthCSS.AuthTitle,
+        paddingBottom: '1.5rem'
     },
     textInput: CSS.AuthCSS.AuthTextInput,
     text: CSS.AuthCSS.AuthText,
@@ -86,9 +90,9 @@ const styles = EStyleSheet.create({
         borderRadius: 30
     },
     name: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between'
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     uploadContainer: {
         width: 320,
@@ -100,5 +104,5 @@ const styles = EStyleSheet.create({
         marginBottom: '1.5rem',
         marginTop: '1.5rem'
     }
-  })
-  export default ImagePage;
+})
+export default ImagePage;

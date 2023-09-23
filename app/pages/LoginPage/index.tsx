@@ -8,6 +8,8 @@ import Pages from '../../constants/pages';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { UserLogin } from '../../service/api/user';
 import { Buffer } from "buffer";
+import { selectToken } from '../../redux/selectors/users';
+import { useSelector } from 'react-redux';
 
 type Props = {
     styles?
@@ -30,11 +32,11 @@ const LoginPage: React.FC<Props> = (props: Props) => {
             }
             const { user } = await UserLogin(username, password);
             console.log(user);
-        } catch(error) {
+        } catch (error) {
             console.log(error);
         }
-        
-    }) 
+
+    })
 
     return (
         <View style={styles.background}>
@@ -49,7 +51,7 @@ const LoginPage: React.FC<Props> = (props: Props) => {
 
 
 
-                <Button label={'Login'} url={Pages.home} background={Colors.primaryDark} color={Colors.white} onPress={login}/>
+                <Button label={'Login'} url={Pages.home} background={Colors.primaryDark} color={Colors.white} onPress={login} />
                 <Button label={'Back'} url={Pages.landing} color={Colors.primaryDark} background={Colors.white} />
 
                 <Text style={styles.text}>New User? <Link style={styles.link} href={Pages.signUp}>Sign Up</Link></Text>
