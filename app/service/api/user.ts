@@ -6,7 +6,7 @@ export async function UserSignUp(
   user: User,
 ): Promise<{ user: User }> {
   const url = `/user`
-  return makeApiRequest(url, HttpMethod.POST, user);
+  return makeApiRequest(url, HttpMethod.POST, user, false);
 }
 
 export async function UserLogin(
@@ -14,5 +14,5 @@ export async function UserLogin(
   encoded_password: string
 ): Promise<{ user: User }> {
   const url = `/login`
-  return makeApiRequest(url, HttpMethod.POST, { username: username, password: encoded_password});
+  return makeApiRequest(url, HttpMethod.POST, { username: username, password: encoded_password }, false);
 }

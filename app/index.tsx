@@ -8,8 +8,6 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import SvgIcon from './constants/icons';
-import { setSessionTokenAction } from './redux/actions/users';
-import { useDispatch } from 'react-redux';
 type Props = {
     styles?
 }

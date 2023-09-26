@@ -8,8 +8,6 @@ import Pages from '../../constants/pages';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { UserLogin } from '../../service/api/user';
 import { Buffer } from "buffer";
-import { selectToken } from '../../redux/selectors/users';
-import { useSelector } from 'react-redux';
 
 type Props = {
     styles?

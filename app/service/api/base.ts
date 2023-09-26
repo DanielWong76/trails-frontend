@@ -1,4 +1,5 @@
-
+import { selectToken } from "../../redux/selectors/users";
+import { useSelector } from 'react-redux';
 export enum HttpMethod {
   GET = 'GET',
   POST = 'POST',
@@ -6,7 +7,7 @@ export enum HttpMethod {
   DELETE = 'DELETE',
 }
 
-const API_URL = process.env.PRODUCTION_URL || 'http://10.48.175.14:8080/api';
+const API_URL = process.env.PRODUCTION_URL || 'exp://10.48.66.25:19000';
 
 export class ApiError extends Error {
   constructor(message, code) {
@@ -32,10 +33,13 @@ export async function makeApiRequest(
   route: string,
   method: HttpMethod,
   data: any = undefined,
-  // context?: ServerSideContext,
-  signal?: AbortSignal
+  //context?: ServerSideContext,
+  auth: boolean = true,
+  signal?: AbortSignal,
 ): Promise<any> {
-  const url = `${API_URL}${route}`
+  const url = `${API_URL + auth && '/api'}${route}`
+  const accessToken = useSelector(selectToken)
+  console.log('access token: ', accessToken)
 
   console.log(`Calling to ${url} with ${data}`)
   try {
@@ -46,7 +50,7 @@ export async function makeApiRequest(
       data ? JSON.stringify(data) : undefined,
       {
         'Content-Type': 'application/json',
-        // Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       }
     )
     const result = await response.json()
