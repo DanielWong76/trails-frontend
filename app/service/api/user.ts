@@ -16,3 +16,12 @@ export async function UserLogin(
   const url = `/login`
   return makeApiRequest(url, HttpMethod.POST, { username: username, password: encoded_password }, false);
 }
+
+
+export async function UserImage(
+  userId: string,
+  imageData: string
+): Promise<{ response: string }> {
+  const url = '/user/' + userId + '/image';
+  return makeApiRequest(url, HttpMethod.POST, { imageData: imageData })
+}

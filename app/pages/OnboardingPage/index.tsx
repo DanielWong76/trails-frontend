@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pages from '../../constants/pages';
 import { Colors } from '../../constants/styles';
 import TrailsLogo from '../../components/trailsLogo';
@@ -7,15 +7,46 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { CSS } from '../../constants/styles';
 import Button from '../../components/button';
 import * as ImagePicker from 'expo-image-picker';
+import { UserImage } from '../../service/api/user';
+import * as FileSystem from 'expo-file-system';
 
 type Props = {
     styles?
 }
 
 
-
 const ImagePage: React.FC<Props> = (props: Props) => {
-    const [photo, setPhoto] = React.useState(null);
+    const [photo, setPhoto] = useState(null);
+
+    function fileToBase64(filePath, callback) {
+        const reader = new FileReader();
+
+        // Handle the file read completion event
+        reader.onload = function (event) {
+            const base64DataUrl = event.target.result;
+            callback(base64DataUrl);
+        };
+
+        // Read the file as a Data URL
+        fetch(filePath)
+            .then((response) => response.blob())
+            .then((blob) => {
+                reader.readAsDataURL(blob);
+            });
+    }
+
+    const cont = (async () => {
+        try {
+            fileToBase64(photo, function (base64DataUrl) {
+                console.log(base64DataUrl); // This is the base64 Data URL
+                const response = UserImage('6505eb72f1848df58c229539', base64DataUrl)
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    })
+
     const handleChoosePhoto = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -45,7 +76,7 @@ const ImagePage: React.FC<Props> = (props: Props) => {
                         <Image source={require('../../assets/images/upload.png')} style={styles.uploadLogo} />
                     </View>
                 </TouchableOpacity>
-                <Button label={'Continue'} url={Pages.landing} background={Colors.primaryDark} color={Colors.white} />
+                <Button label={'Continue'} url={Pages.landing} background={Colors.primaryDark} color={Colors.white} onPress={cont} />
                 <Button label={'Continue without Image'} url={Pages.landing} background={Colors.white} color={Colors.primaryDark} />
             </View>
 
